@@ -1,0 +1,12 @@
+[core]
+	excludesfile = /Users/swiizyy/.gitignore_global
+[user]
+	name = Williams Bussat
+	email = williams@wbussat.fr
+[commit]
+	template = /Users/swiizyy/.stCommitMsg
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

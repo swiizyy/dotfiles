@@ -3,10 +3,16 @@
 [user]
 	name = Williams Bussat
 	email = williams@wbussat.fr
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILR+o3irEPxDBMFE2kKbGDC+RDsG6j9wk3+oW+UvKZ1J
 [commit]
 	template = /Users/swiizyy/.stCommitMsg
+	gpgsign = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign

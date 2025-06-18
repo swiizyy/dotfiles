@@ -6,7 +6,7 @@
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILR+o3irEPxDBMFE2kKbGDC+RDsG6j9wk3+oW+UvKZ1J
 [commit]
 	template = /Users/swiizyy/.stCommitMsg
-	gpgsign = true
+	# gpgsign = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

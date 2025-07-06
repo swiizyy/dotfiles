@@ -30,8 +30,29 @@ This dotfiles repository now includes unified package manager commands that work
 - `pkg-remove <package>` - Remove packages
 - `pkg-list` - List installed packages
 - `pkg-info <package>` - Show package information
+- `pkg-run <application>` - Launch applications (works with Flatpak apps and system binaries)
 
 The installation scripts in the Makefile automatically use the appropriate package manager for your system.
+
+### Application Launching
+
+The `pkg-run` command provides a unified way to launch applications regardless of how they were installed:
+
+- **Flatpak Apps**: Automatically detects and launches Flatpak applications using `flatpak run`
+- **System Binaries**: Launches applications installed via package managers or available in PATH
+- **Smart Detection**: Prioritizes Flatpak apps first, then falls back to system binaries
+
+Examples:
+```bash
+# Launch a Flatpak application
+pkg-run org.mozilla.firefox
+
+# Launch a system application
+pkg-run firefox
+
+# Launch any application by name
+pkg-run code
+```
 
 ## Terminal and Application Icons with Nerd-Fonts
 

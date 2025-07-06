@@ -30,6 +30,50 @@ detect_package_manager() {
     fi
 }
 
+# Function to run/launch applications
+pkg_run_app() {
+    local app_name="$1"
+    shift
+    local app_args="$@"
+    
+    if [[ -z "$app_name" ]]; then
+        echo "Usage: pkg-run <application-name>"
+        return 1
+    fi
+    
+    # Check if it's a Flatpak application first
+    if command -v flatpak >/dev/null 2>&1; then
+        if flatpak list --app 2>/dev/null | grep -q "$app_name"; then
+            echo "Launching Flatpak app: $app_name"
+            flatpak run "$app_name" $app_args
+            return 0
+        fi
+    fi
+    
+    # Check if it's available in PATH
+    if command -v "$app_name" >/dev/null 2>&1; then
+        echo "Launching system app: $app_name"
+        "$app_name" $app_args
+        return 0
+    fi
+    
+    # Try to find it in common application directories
+    local app_dirs=("/usr/bin" "/usr/local/bin" "/opt/*/bin" "$HOME/.local/bin")
+    for dir in "${app_dirs[@]}"; do
+        if [[ -x "$dir/$app_name" ]]; then
+            echo "Launching app from $dir: $app_name"
+            "$dir/$app_name" $app_args
+            return 0
+        fi
+    done
+    
+    echo "Application '$app_name' not found. Try:"
+    echo "  - Check available Flatpak apps: flatpak list --app"
+    echo "  - Check installed packages: pkg-list"
+    echo "  - Search for the app: pkg-search $app_name"
+    return 1
+}
+
 # Function to execute package manager commands
 pkg_exec() {
     local action="$1"
@@ -48,6 +92,7 @@ pkg_exec() {
                 "remove") sudo xbps-remove $packages ;;
                 "list") xbps-query -l ;;
                 "info") xbps-query -R $packages ;;
+                "run") pkg_run_app $packages ;;
                 *) echo "Unknown action: $action" ;;
             esac
             ;;
@@ -59,6 +104,7 @@ pkg_exec() {
                 "remove") sudo pacman -R $packages ;;
                 "list") pacman -Q ;;
                 "info") pacman -Si $packages ;;
+                "run") pkg_run_app $packages ;;
                 *) echo "Unknown action: $action" ;;
             esac
             ;;
@@ -70,6 +116,7 @@ pkg_exec() {
                 "remove") sudo apt remove $packages ;;
                 "list") apt list --installed ;;
                 "info") apt show $packages ;;
+                "run") pkg_run_app $packages ;;
                 *) echo "Unknown action: $action" ;;
             esac
             ;;
@@ -81,6 +128,7 @@ pkg_exec() {
                 "remove") sudo dnf remove $packages ;;
                 "list") dnf list installed ;;
                 "info") dnf info $packages ;;
+                "run") pkg_run_app $packages ;;
                 *) echo "Unknown action: $action" ;;
             esac
             ;;
@@ -92,6 +140,7 @@ pkg_exec() {
                 "remove") sudo yum remove $packages ;;
                 "list") yum list installed ;;
                 "info") yum info $packages ;;
+                "run") pkg_run_app $packages ;;
                 *) echo "Unknown action: $action" ;;
             esac
             ;;
@@ -103,6 +152,7 @@ pkg_exec() {
                 "remove") sudo zypper remove $packages ;;
                 "list") zypper search --installed-only ;;
                 "info") zypper info $packages ;;
+                "run") pkg_run_app $packages ;;
                 *) echo "Unknown action: $action" ;;
             esac
             ;;
@@ -114,6 +164,7 @@ pkg_exec() {
                 "remove") brew uninstall $packages ;;
                 "list") brew list ;;
                 "info") brew info $packages ;;
+                "run") pkg_run_app $packages ;;
                 *) echo "Unknown action: $action" ;;
             esac
             ;;
@@ -125,6 +176,7 @@ pkg_exec() {
                 "remove") sudo port uninstall $packages ;;
                 "list") port installed ;;
                 "info") port info $packages ;;
+                "run") pkg_run_app $packages ;;
                 *) echo "Unknown action: $action" ;;
             esac
             ;;
@@ -136,6 +188,7 @@ pkg_exec() {
                 "remove") flatpak uninstall $packages ;;
                 "list") flatpak list ;;
                 "info") flatpak info $packages ;;
+                "run") pkg_run_app $packages ;;
                 *) echo "Unknown action: $action" ;;
             esac
             ;;
@@ -159,6 +212,7 @@ case $PKG_MANAGER in
         alias pkg-remove="sudo xbps-remove"
         alias pkg-list="xbps-query -l"
         alias pkg-info="xbps-query -R"
+        alias pkg-run="pkg_run_app"
         ;;
     "pacman")
         # Arch Linux - pacman
@@ -168,6 +222,7 @@ case $PKG_MANAGER in
         alias pkg-remove="sudo pacman -R"
         alias pkg-list="pacman -Q"
         alias pkg-info="pacman -Si"
+        alias pkg-run="pkg_run_app"
         ;;
     "apt")
         # Debian/Ubuntu - apt
@@ -177,6 +232,7 @@ case $PKG_MANAGER in
         alias pkg-remove="sudo apt remove"
         alias pkg-list="apt list --installed"
         alias pkg-info="apt show"
+        alias pkg-run="pkg_run_app"
         ;;
     "dnf")
         # Fedora - dnf
@@ -186,6 +242,7 @@ case $PKG_MANAGER in
         alias pkg-remove="sudo dnf remove"
         alias pkg-list="dnf list installed"
         alias pkg-info="dnf info"
+        alias pkg-run="pkg_run_app"
         ;;
     "yum")
         # RHEL/CentOS - yum
@@ -195,6 +252,7 @@ case $PKG_MANAGER in
         alias pkg-remove="sudo yum remove"
         alias pkg-list="yum list installed"
         alias pkg-info="yum info"
+        alias pkg-run="pkg_run_app"
         ;;
     "zypper")
         # openSUSE - zypper
@@ -204,6 +262,7 @@ case $PKG_MANAGER in
         alias pkg-remove="sudo zypper remove"
         alias pkg-list="zypper search --installed-only"
         alias pkg-info="zypper info"
+        alias pkg-run="pkg_run_app"
         ;;
     "brew")
         # macOS - Homebrew
@@ -213,6 +272,7 @@ case $PKG_MANAGER in
         alias pkg-remove="brew uninstall"
         alias pkg-list="brew list"
         alias pkg-info="brew info"
+        alias pkg-run="pkg_run_app"
         ;;
     "port")
         # macOS - MacPorts
@@ -222,6 +282,7 @@ case $PKG_MANAGER in
         alias pkg-remove="sudo port uninstall"
         alias pkg-list="port installed"
         alias pkg-info="port info"
+        alias pkg-run="pkg_run_app"
         ;;
     "flatpak")
         # Universal - Flatpak
@@ -231,6 +292,7 @@ case $PKG_MANAGER in
         alias pkg-remove="flatpak uninstall"
         alias pkg-list="flatpak list"
         alias pkg-info="flatpak info"
+        alias pkg-run="pkg_run_app"
         ;;
     *)
         # Unknown package manager - provide informative aliases
@@ -240,6 +302,7 @@ case $PKG_MANAGER in
         alias pkg-remove="echo 'No supported package manager found. Please remove packages manually.'"
         alias pkg-list="echo 'No supported package manager found. Please list packages manually.'"
         alias pkg-info="echo 'No supported package manager found. Please get package info manually.'"
+        alias pkg-run="echo 'No supported package manager found. Please run applications manually.'"
         ;;
 esac
 

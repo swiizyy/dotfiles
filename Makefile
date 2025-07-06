@@ -1,10 +1,10 @@
 install: zsh starship ssh warp git hushlogin
 
 starship:
-	sudo port install starship
+	./.zsh/package-manager.zsh install starship
 	ln -vsf {${PWD},${HOME}}/.config/starship.toml 
 zsh:
-	sudo port install zsh
+	./.zsh/package-manager.zsh install zsh
 	ln -vsf {${PWD},${HOME}}/.zshrc
 	ln -vsf {${PWD},${HOME}}/.zshenv
 	ln -vsf {${PWD},${HOME}}/.zsh
@@ -18,3 +18,7 @@ git:
 	ln -vsf {${PWD},${HOME}}/.stCommitMsg
 hushlogin:
 	ln -vsf {${PWD},${HOME}}/.hushlogin
+
+# Package manager commands
+update:
+	./.zsh/package-manager.zsh update

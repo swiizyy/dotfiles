@@ -21,6 +21,7 @@ This dotfiles repository now includes unified package manager commands that work
 - **zypper** (openSUSE)
 - **brew** (macOS - Homebrew)
 - **port** (macOS - MacPorts)
+- **flatpak** (Universal - Cross-distribution)
 
 **Unified Commands:**
 - `pkg-install <package>` - Install packages

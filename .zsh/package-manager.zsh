@@ -23,6 +23,8 @@ detect_package_manager() {
         echo "brew"
     elif command -v port >/dev/null 2>&1; then
         echo "port"
+    elif command -v flatpak >/dev/null 2>&1; then
+        echo "flatpak"
     else
         echo "unknown"
     fi
@@ -126,6 +128,17 @@ pkg_exec() {
                 *) echo "Unknown action: $action" ;;
             esac
             ;;
+        "flatpak")
+            case $action in
+                "install") flatpak install $packages ;;
+                "update") flatpak update ;;
+                "search") flatpak search $packages ;;
+                "remove") flatpak uninstall $packages ;;
+                "list") flatpak list ;;
+                "info") flatpak info $packages ;;
+                *) echo "Unknown action: $action" ;;
+            esac
+            ;;
         *)
             echo "No supported package manager found. Please install packages manually."
             exit 1
@@ -209,6 +222,15 @@ case $PKG_MANAGER in
         alias pkg-remove="sudo port uninstall"
         alias pkg-list="port installed"
         alias pkg-info="port info"
+        ;;
+    "flatpak")
+        # Universal - Flatpak
+        alias pkg-install="flatpak install"
+        alias pkg-update="flatpak update"
+        alias pkg-search="flatpak search"
+        alias pkg-remove="flatpak uninstall"
+        alias pkg-list="flatpak list"
+        alias pkg-info="flatpak info"
         ;;
     *)
         # Unknown package manager - provide informative aliases

@@ -1,25 +1,17 @@
 install: zsh starship ssh warp git hushlogin
 
 # Void Linux installation with Wayland/Sway support
-install-void: install-void-packages zsh-void starship-void ssh warp git hushlogin sway waybar swaync
+install-void: install-void-packages zsh starship ssh warp git hushlogin sway waybar swaync
 
 install-void-packages:
 	./scripts/install-void.sh
 
 starship:
-	sudo port install starship
-	ln -vsf {${PWD},${HOME}}/.config/starship.toml 
-
-starship-void:
+	./.zsh/package-manager.zsh install starship
 	ln -vsf {${PWD},${HOME}}/.config/starship.toml 
 
 zsh:
-	sudo port install zsh
-	ln -vsf {${PWD},${HOME}}/.zshrc
-	ln -vsf {${PWD},${HOME}}/.zshenv
-	ln -vsf {${PWD},${HOME}}/.zsh
-
-zsh-void:
+	./.zsh/package-manager.zsh install zsh
 	ln -vsf {${PWD},${HOME}}/.zshrc
 	ln -vsf {${PWD},${HOME}}/.zshenv
 	ln -vsf {${PWD},${HOME}}/.zsh
@@ -47,3 +39,7 @@ waybar:
 
 swaync:
 	ln -vsf {${PWD},${HOME}}/.config/swaync/
+
+# Package manager commands
+update:
+	./.zsh/package-manager.zsh update

@@ -1,0 +1,244 @@
+/* Catppuccin Macchiato Theme for Waybar */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Hack Nerd Font Mono", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #24273a;
+    border-bottom: 3px solid #8aadf4;
+    color: #cad3f5;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+window#waybar.termite {
+    background-color: #1e2030;
+}
+
+window#waybar.chromium {
+    background-color: #24273a;
+    border: none;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #cad3f5;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button:hover {
+    background: rgba(138, 173, 244, 0.3);
+    box-shadow: inset 0 -3px #8aadf4;
+}
+
+#workspaces button.focused {
+    background-color: #8aadf4;
+    border-bottom: 3px solid #cad3f5;
+}
+
+#workspaces button.urgent {
+    background-color: #ed8796;
+}
+
+#mode,
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#idle_inhibitor,
+#mpd {
+    padding: 0 10px;
+    color: #cad3f5;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    background-color: #8aadf4;
+    color: #24273a;
+}
+
+#battery {
+    background-color: #c6a0f6;
+    color: #24273a;
+}
+
+#battery.charging, #battery.plugged {
+    color: #24273a;
+    background-color: #a6da95;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ed8796;
+        color: #24273a;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #ed8796;
+    color: #24273a;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #24273a;
+}
+
+#cpu {
+    background-color: #ed8796;
+    color: #24273a;
+}
+
+#memory {
+    background-color: #f5a97f;
+    color: #24273a;
+}
+
+#disk {
+    background-color: #a6da95;
+    color: #24273a;
+}
+
+#backlight {
+    background-color: #f0c6c6;
+    color: #24273a;
+}
+
+#network {
+    background-color: #8aadf4;
+    color: #24273a;
+}
+
+#network.disconnected {
+    background-color: #ed8796;
+    color: #24273a;
+}
+
+#pulseaudio {
+    background-color: #c6a0f6;
+    color: #24273a;
+}
+
+#pulseaudio.muted {
+    background-color: #8087a2;
+    color: #cad3f5;
+}
+
+#custom-media {
+    background-color: #a6da95;
+    color: #24273a;
+    min-width: 100px;
+}
+
+#custom-media.custom-vlc {
+    background-color: #f5a97f;
+    color: #24273a;
+}
+
+#temperature {
+    background-color: #f0c6c6;
+    color: #24273a;
+}
+
+#temperature.critical {
+    background-color: #ed8796;
+    color: #24273a;
+}
+
+#tray {
+    background-color: #1e2030;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #ed8796;
+}
+
+#idle_inhibitor {
+    background-color: #1e2030;
+}
+
+#idle_inhibitor.activated {
+    background-color: #cad3f5;
+    color: #24273a;
+}
+
+#mpd {
+    background-color: #a6da95;
+    color: #24273a;
+}
+
+#mpd.disconnected {
+    background-color: #ed8796;
+    color: #24273a;
+}
+
+#mpd.stopped {
+    background-color: #8087a2;
+    color: #cad3f5;
+}
+
+#mpd.paused {
+    background-color: #f0c6c6;
+    color: #24273a;
+}
+
+#language {
+    background: #c6a0f6;
+    color: #24273a;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: #f5a97f;
+    color: #24273a;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}

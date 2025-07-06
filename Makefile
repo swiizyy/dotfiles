@@ -55,9 +55,29 @@ themes:
 theme-rose-pine:
 	${PWD}/scripts/theme-switcher.sh rose-pine
 
-# Set Catppuccin as default theme
+# Set Catppuccin Mocha as default theme (backward compatibility)
 theme-catppuccin:
-	${PWD}/scripts/theme-switcher.sh catppuccin
+	${PWD}/scripts/theme-switcher.sh catppuccin-mocha
+
+# Rose Pine theme variants
+theme-rose-pine-moon:
+	${PWD}/scripts/theme-switcher.sh rose-pine-moon
+
+theme-rose-pine-dawn:
+	${PWD}/scripts/theme-switcher.sh rose-pine-dawn
+
+# Catppuccin theme variants
+theme-catppuccin-latte:
+	${PWD}/scripts/theme-switcher.sh catppuccin-latte
+
+theme-catppuccin-frappe:
+	${PWD}/scripts/theme-switcher.sh catppuccin-frappe
+
+theme-catppuccin-macchiato:
+	${PWD}/scripts/theme-switcher.sh catppuccin-macchiato
+
+theme-catppuccin-mocha:
+	${PWD}/scripts/theme-switcher.sh catppuccin-mocha
 
 # Package manager commands
 update:

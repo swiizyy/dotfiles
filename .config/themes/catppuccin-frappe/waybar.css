@@ -1,0 +1,244 @@
+/* Catppuccin Frappé Theme for Waybar */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Hack Nerd Font Mono", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #303446;
+    border-bottom: 3px solid #8caaee;
+    color: #c6d0f5;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+window#waybar.termite {
+    background-color: #292c3c;
+}
+
+window#waybar.chromium {
+    background-color: #303446;
+    border: none;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #c6d0f5;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button:hover {
+    background: rgba(140, 170, 238, 0.3);
+    box-shadow: inset 0 -3px #8caaee;
+}
+
+#workspaces button.focused {
+    background-color: #8caaee;
+    border-bottom: 3px solid #c6d0f5;
+}
+
+#workspaces button.urgent {
+    background-color: #e78284;
+}
+
+#mode,
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#idle_inhibitor,
+#mpd {
+    padding: 0 10px;
+    color: #c6d0f5;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    background-color: #8caaee;
+    color: #303446;
+}
+
+#battery {
+    background-color: #ca9ee6;
+    color: #303446;
+}
+
+#battery.charging, #battery.plugged {
+    color: #303446;
+    background-color: #a6d189;
+}
+
+@keyframes blink {
+    to {
+        background-color: #e78284;
+        color: #303446;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #e78284;
+    color: #303446;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #303446;
+}
+
+#cpu {
+    background-color: #e78284;
+    color: #303446;
+}
+
+#memory {
+    background-color: #ef9f76;
+    color: #303446;
+}
+
+#disk {
+    background-color: #a6d189;
+    color: #303446;
+}
+
+#backlight {
+    background-color: #f4b8e4;
+    color: #303446;
+}
+
+#network {
+    background-color: #8caaee;
+    color: #303446;
+}
+
+#network.disconnected {
+    background-color: #e78284;
+    color: #303446;
+}
+
+#pulseaudio {
+    background-color: #ca9ee6;
+    color: #303446;
+}
+
+#pulseaudio.muted {
+    background-color: #838ba7;
+    color: #c6d0f5;
+}
+
+#custom-media {
+    background-color: #a6d189;
+    color: #303446;
+    min-width: 100px;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ef9f76;
+    color: #303446;
+}
+
+#temperature {
+    background-color: #f4b8e4;
+    color: #303446;
+}
+
+#temperature.critical {
+    background-color: #e78284;
+    color: #303446;
+}
+
+#tray {
+    background-color: #292c3c;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #e78284;
+}
+
+#idle_inhibitor {
+    background-color: #292c3c;
+}
+
+#idle_inhibitor.activated {
+    background-color: #c6d0f5;
+    color: #303446;
+}
+
+#mpd {
+    background-color: #a6d189;
+    color: #303446;
+}
+
+#mpd.disconnected {
+    background-color: #e78284;
+    color: #303446;
+}
+
+#mpd.stopped {
+    background-color: #838ba7;
+    color: #c6d0f5;
+}
+
+#mpd.paused {
+    background-color: #f4b8e4;
+    color: #303446;
+}
+
+#language {
+    background: #ca9ee6;
+    color: #303446;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: #ef9f76;
+    color: #303446;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}

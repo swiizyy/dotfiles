@@ -13,17 +13,25 @@ SWAY_DIR="$HOME/.config/sway"
 LY_DIR="$HOME/.config/ly"
 
 # Available themes
-THEMES=("rose-pine" "catppuccin")
+THEMES=("rose-pine" "rose-pine-moon" "rose-pine-dawn" "catppuccin-latte" "catppuccin-frappe" "catppuccin-macchiato" "catppuccin-mocha")
 
 # Function to display usage
 usage() {
     echo "Usage: $0 [theme]"
     echo "Available themes:"
-    for theme in "${THEMES[@]}"; do
-        echo "  - $theme"
-    done
+    echo "  Rose Pine variants:"
+    echo "    - rose-pine       (Base Rose Pine - dark)"
+    echo "    - rose-pine-moon  (Rose Pine Moon - dark)"
+    echo "    - rose-pine-dawn  (Rose Pine Dawn - light)"
     echo ""
-    echo "Example: $0 rose-pine"
+    echo "  Catppuccin variants:"
+    echo "    - catppuccin-latte      (Catppuccin Latte - light)"
+    echo "    - catppuccin-frappe     (Catppuccin Frappé - dark)"
+    echo "    - catppuccin-macchiato  (Catppuccin Macchiato - dark)"
+    echo "    - catppuccin-mocha      (Catppuccin Mocha - dark)"
+    echo ""
+    echo "Example: $0 rose-pine-moon"
+    echo "Example: $0 catppuccin-latte"
     exit 1
 }
 

@@ -1,7 +1,7 @@
 install: zsh starship ssh warp git hushlogin
 
 # Void Linux installation with Wayland/Sway support
-install-void: install-void-packages zsh starship ssh warp git hushlogin sway waybar swaync ly
+install-void: install-void-packages zsh starship ssh warp git hushlogin sway waybar swaync ly themes theme-rose-pine
 
 install-void-packages:
 	./scripts/install-void.sh
@@ -43,6 +43,21 @@ swaync:
 # ly display manager configuration
 ly:
 	ln -vsf {${PWD},${HOME}}/.config/ly/
+
+# Theme management
+themes:
+	mkdir -p ${HOME}/.config ${HOME}/.local/bin
+	ln -vsf ${PWD}/.config/themes/ ${HOME}/.config/themes
+	chmod +x ${PWD}/scripts/theme-switcher.sh
+	ln -vsf ${PWD}/scripts/theme-switcher.sh ${HOME}/.local/bin/theme-switcher
+
+# Set Rose Pine as default theme
+theme-rose-pine:
+	${PWD}/scripts/theme-switcher.sh rose-pine
+
+# Set Catppuccin as default theme
+theme-catppuccin:
+	${PWD}/scripts/theme-switcher.sh catppuccin
 
 # Package manager commands
 update:

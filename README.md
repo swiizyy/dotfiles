@@ -88,6 +88,31 @@ This dotfiles repository now includes comprehensive support for Void Linux with 
 - **Foot**: Default terminal emulator
 - **Various utilities**: grim, slurp, wl-clipboard, etc.
 
+### Themes
+This setup includes two beautiful theme options:
+- **Rose Pine**: Warm, cozy dark theme with natural colors
+- **Catppuccin**: Modern, vibrant theme with excellent contrast
+
+**Theme Management:**
+```bash
+# Switch to Rose Pine theme
+theme-switcher rose-pine
+
+# Switch to Catppuccin theme
+theme-switcher catppuccin
+
+# Check current theme
+theme-switcher --current
+```
+
+Themes are automatically applied to:
+- Waybar (status bar)
+- swaync (notifications)
+- Sway (window decorations and colors)
+- ly (display manager)
+
+For detailed theme information, see the [Theme Documentation](docs/THEMES.md).
+
 ### Features
 - ✅ i3-compatible keybindings and workflow
 - ✅ Modern Wayland protocol benefits
@@ -113,9 +138,14 @@ dotfiles/
 │   ├── sway/               # Sway compositor configuration
 │   ├── waybar/             # Waybar status bar configuration
 │   ├── swaync/             # Notification daemon configuration
-│   └── ly/                 # ly display manager configuration
+│   ├── ly/                 # ly display manager configuration
+│   └── themes/             # Theme configurations
+│       ├── rose-pine/      # Rose Pine theme files
+│       └── catppuccin/     # Catppuccin theme files
 ├── .zsh/                   # Zsh configuration files
 ├── scripts/                # Installation scripts
+│   ├── install-void.sh     # Void Linux package installer
+│   └── theme-switcher.sh   # Theme switching utility
 ├── docs/                   # Documentation
 └── Makefile               # Installation automation
 ```

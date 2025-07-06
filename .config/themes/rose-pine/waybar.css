@@ -1,0 +1,176 @@
+/* Rose Pine Theme for Waybar */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Hack Nerd Font Mono", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #191724;
+    border-bottom: 3px solid #31748f;
+    color: #e0def4;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+window#waybar.termite {
+    background-color: #1f1d2e;
+}
+
+window#waybar.chromium {
+    background-color: #191724;
+    border: none;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #e0def4;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button:hover {
+    background: rgba(49, 116, 143, 0.3);
+    box-shadow: inset 0 -3px #31748f;
+}
+
+#workspaces button.focused {
+    background-color: #31748f;
+    border-bottom: 3px solid #e0def4;
+}
+
+#workspaces button.urgent {
+    background-color: #eb6f92;
+}
+
+#mode {
+    background-color: #31748f;
+    border-bottom: 3px solid #e0def4;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#network,
+#pulseaudio,
+#tray,
+#mode,
+#idle_inhibitor {
+    padding: 0 10px;
+    margin: 0 4px;
+    color: #e0def4;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    background-color: #31748f;
+    color: #e0def4;
+}
+
+#battery {
+    background-color: #f6c177;
+    color: #191724;
+}
+
+#battery.charging, #battery.plugged {
+    color: #191724;
+    background-color: #9ccfd8;
+}
+
+@keyframes blink {
+    to {
+        background-color: #eb6f92;
+        color: #e0def4;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #eb6f92;
+    color: #e0def4;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #26233a;
+}
+
+#cpu {
+    background-color: #9ccfd8;
+    color: #191724;
+}
+
+#memory {
+    background-color: #c4a7e7;
+    color: #191724;
+}
+
+#temperature {
+    background-color: #f6c177;
+    color: #191724;
+}
+
+#temperature.critical {
+    background-color: #eb6f92;
+    color: #e0def4;
+}
+
+#network {
+    background-color: #31748f;
+    color: #e0def4;
+}
+
+#network.disconnected {
+    background-color: #eb6f92;
+    color: #e0def4;
+}
+
+#pulseaudio {
+    background-color: #ebbcba;
+    color: #191724;
+}
+
+#pulseaudio.muted {
+    background-color: #6e6a86;
+    color: #e0def4;
+}
+
+#tray {
+    background-color: #31748f;
+    color: #e0def4;
+}
+
+#idle_inhibitor {
+    background-color: #26233a;
+    color: #e0def4;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ebbcba;
+    color: #191724;
+}

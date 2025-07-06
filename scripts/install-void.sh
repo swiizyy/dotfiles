@@ -15,6 +15,10 @@ sudo xbps-install -Su
 echo "🏗️  Installing Sway and Wayland components..."
 sudo xbps-install -S sway waybar swaylock swayidle swaybg swaync
 
+# Install ly display manager
+echo "🖥️  Installing ly display manager..."
+sudo xbps-install -S ly
+
 # Install terminal and system utilities
 echo "📱 Installing terminal and system utilities..."
 sudo xbps-install -S foot alacritty starship zsh git direnv
@@ -58,6 +62,7 @@ echo ""
 echo "Next steps:"
 echo "1. Log out and log back in (or restart) to use the new shell"
 echo "2. Run 'make install-void' to set up dotfiles"
-echo "3. Start Sway with 'sway' command"
+echo "3. Enable ly display manager: 'sudo ln -s /etc/sv/ly /var/service/'"
+echo "4. Start Sway with 'sway' command or reboot to use ly"
 echo ""
-echo "📝 Note: You may need to configure your display manager to support Wayland sessions"
+echo "📝 Note: ly is now installed as your display manager for easy Wayland session management"

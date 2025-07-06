@@ -1,7 +1,7 @@
 install: zsh starship ssh warp git hushlogin
 
 # Void Linux installation with Wayland/Sway support
-install-void: install-void-packages zsh starship ssh warp git hushlogin sway waybar swaync
+install-void: install-void-packages zsh starship ssh warp git hushlogin sway waybar swaync ly
 
 install-void-packages:
 	./scripts/install-void.sh
@@ -39,6 +39,10 @@ waybar:
 
 swaync:
 	ln -vsf {${PWD},${HOME}}/.config/swaync/
+
+# ly display manager configuration
+ly:
+	ln -vsf {${PWD},${HOME}}/.config/ly/
 
 # Package manager commands
 update:

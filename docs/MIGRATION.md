@@ -39,6 +39,17 @@ make install-void
 
 ### 3. Configure Your Display Manager
 
+#### For ly (Recommended - Installed with this setup):
+ly is a lightweight TUI display manager that's perfect for minimal setups:
+
+```bash
+# Enable ly service (included in install-void.sh)
+sudo ln -s /etc/sv/ly /var/service/
+
+# ly will automatically detect Sway and other sessions
+# Configuration is in ~/.config/ly/config.ini
+```
+
 #### For GDM (GNOME Display Manager):
 - Sway should appear as an option in the session selector
 
@@ -62,10 +73,26 @@ SessionDir=/usr/share/wayland-sessions
 # From TTY (recommended for first time)
 sway
 
+# Or reboot and select "Sway" from ly display manager
 # Or select "Sway" from your display manager
 ```
 
 ## Configuration Migration
+
+### ly Display Manager Customization
+
+The included ly configuration provides a clean, minimal login experience:
+
+```bash
+# Edit ly configuration
+nano ~/.config/ly/config.ini
+
+# Key settings:
+# - animate = true          # Enable login animations
+# - enable_colors = true    # Color theme support
+# - timeout = 300          # Auto-logout after 5 minutes
+# - max_tries = 3          # Maximum login attempts
+```
 
 ### i3 Config → Sway Config
 Most i3 configurations can be copied to Sway with minimal changes:

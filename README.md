@@ -83,6 +83,7 @@ This dotfiles repository now includes comprehensive support for Void Linux with 
 - **Sway**: Tiling Wayland compositor (i3-compatible)
 - **Waybar**: Highly customizable status bar
 - **swaync**: Notification daemon for Sway
+- **ly**: Lightweight TUI display manager
 - **Starship**: Cross-shell prompt with Void Linux detection
 - **Foot**: Default terminal emulator
 - **Various utilities**: grim, slurp, wl-clipboard, etc.
@@ -111,7 +112,8 @@ dotfiles/
 │   ├── starship.toml       # Starship prompt configuration
 │   ├── sway/               # Sway compositor configuration
 │   ├── waybar/             # Waybar status bar configuration
-│   └── swaync/             # Notification daemon configuration
+│   ├── swaync/             # Notification daemon configuration
+│   └── ly/                 # ly display manager configuration
 ├── .zsh/                   # Zsh configuration files
 ├── scripts/                # Installation scripts
 ├── docs/                   # Documentation
